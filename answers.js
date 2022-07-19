@@ -21,21 +21,24 @@ db.burgers.find({})
 // show just the meat of each burger
 db.burgers.find({}, { protein: 1 })
 // show just the toppings of each burger
-
+db.burgers.find({}, { topping: 1 })
 // show everything but the cheese
-
+db.burgers.find({}, { topping: 0 })
 // find all the burgers with beef
 db.burgers.find({ protein: 'beef' })
 // find all the burgers that are not beef
 db.burgers.find({ protein: { $ne: 'beef' } })
 // find the first burger with cheese
-
+db.burgers.findOne({ cheese: 'cheese' })
 // find one and update the first burger with cheese to have a property of 'double cheese'
-
+db.burgers.updateOne(
+  { cheese: 'cheese' },
+  { $set: { cheese: 'double cheese' } }
+)
 // find the burger you updated to have double cheese
-
+db.burgers.find({ cheese: 'double cheese' })
 // find and update all the beef burgers to be 'veggie'
-
+db.burgers.updateMany({ protein: 'beef' }, { $set: { protein: 'veggie' } })
 // delete one of your veggie burgers
 // WRONG - dELETES ALL : db.burger.remove({meat: 'veggie'})
 
