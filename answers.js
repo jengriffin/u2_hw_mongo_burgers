@@ -1,17 +1,33 @@
 // create 5 burgers (at least 3 should be beef)
-
+db.burgers.insertMany([
+  {
+    protein: 'beef',
+    cheese: 'cheese',
+    topping: 'ghost chili sauce',
+    name: "Ehn'gha"
+  },
+  {
+    protein: 'beef',
+    cheese: 'cheese',
+    topping: 'blueberries',
+    name: 'Ulyaoth'
+  },
+  { protein: 'beef', cheese: 'cheese', topping: 'kiwis', name: "Xel'lotath" },
+  { protein: 'chicken', cheese: 'no', topping: 'ketchup', name: "Chattur'gha" },
+  { protein: 'turkey', cheese: 'no', topping: 'red slaw', name: 'Mantork' }
+])
 // find all the burgers
-
+db.burgers.find({})
 // show just the meat of each burger
-
+db.burgers.find({}, { protein: 1 })
 // show just the toppings of each burger
 
 // show everything but the cheese
 
 // find all the burgers with beef
-
+db.burgers.find({ protein: 'beef' })
 // find all the burgers that are not beef
-
+db.burgers.find({ protein: { $ne: 'beef' } })
 // find the first burger with cheese
 
 // find one and update the first burger with cheese to have a property of 'double cheese'
@@ -48,4 +64,4 @@
 // add a topping of 'eggs' to all the beef burgers
 //note since this db is 'reset' there should be no veggie burgers, all beef burgers should still be intact
 
-//Add a price to each burger, start with $5.00 for each burger 
+//Add a price to each burger, start with $5.00 for each burger
