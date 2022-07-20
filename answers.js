@@ -41,27 +41,44 @@ db.burgers.find({ cheese: 'double cheese' })
 db.burgers.updateMany({ protein: 'beef' }, { $set: { protein: 'veggie' } })
 // delete one of your veggie burgers
 // WRONG - dELETES ALL : db.burger.remove({meat: 'veggie'})
-
+db.burgers.deleteOne({ protein: 'veggie' })
 // drop the collection
 //Expected Output
 //true
-
+db.burgers.drop()
 // drop the database
 //Expected Output
 // {
 //   "dropped": "burgers",
 //   "ok": 1
 // }
-
+db.dropDatabase()
 //
 // Bonus
 //recreate your burgers database and your burger collection
 //copy paste your insert burgers from above to reseed your database
+db.burgers.insertMany([
+  {
+    protein: 'beef',
+    cheese: 'cheese',
+    topping: 'ghost chili sauce',
+    name: "Ehn'gha"
+  },
+  {
+    protein: 'beef',
+    cheese: 'cheese',
+    topping: 'blueberries',
+    name: 'Ulyaoth'
+  },
+  { protein: 'beef', cheese: 'cheese', topping: 'kiwis', name: "Xel'lotath" },
+  { protein: 'chicken', cheese: 'no', topping: 'ketchup', name: "Chattur'gha" },
+  { protein: 'turkey', cheese: 'no', topping: 'red slaw', name: 'Mantork' }
+])
 
 // Change the name of the key cheese to 'pumpkinSpice'
-
+db.burgers.updateMany({}, { $rename: { cheese: 'pumpkinSpice' } })
 // find all the burgers with ketchup (or another topping you used at least once)
-
+db.burgers.find({ topping: 'ketchup' })
 // find all the burgers with pickles (or a topping you used more than once) and remove the pickles
 
 // add a topping of 'eggs' to all the beef burgers
